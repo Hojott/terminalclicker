@@ -35,7 +35,7 @@ def on_press(Key):
             writefile('builds', builds)
             writefile('price', price)
             writefile('clicks', clicks)
-            print(f"Rakennuksia: {builds}\n s. hinta: {price}")
+            print(f"Rakennuksia: {builds}\n- Seuraava hinta: {price}")
 
         else:
             print("Hinta: ", price)
