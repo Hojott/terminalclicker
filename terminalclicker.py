@@ -2,7 +2,6 @@ import math
 from pynput import keyboard
 
 def openfile(file):
-    ofile = 0
     with open('./txt/'+file+'.txt', 'r') as f:
         ofile = int(f.readlines()[0])
     f.close()
@@ -31,16 +30,18 @@ def on_press(Key):
         if clicks >= price:
             clicks = clicks - price
             builds = builds + 1
-            #price = int(math.ceil(price ** (107.5/100)))
-            price = int(math.ceil(math.factorial(builds)/(builds**builds)) + 15) #lol ei
+            price = int(math.ceil(price * math.exp(1/4)))
 
             writefile('builds', builds)
             writefile('price', price)
             writefile('clicks', clicks)
-            print("Rakennuksia: ", int(builds))
+            print(f"Rakennuksia: {builds}\n s. hinta: {price}")
 
         else:
             print("Hinta: ", price)
+
+    elif Key == keyboard.Key.esc:
+        exit()
 
 print("Tervetuloa! Paina Ctrl clikkaaksei ja Shift ostaaksesi uusia rakennuksia.")
 
