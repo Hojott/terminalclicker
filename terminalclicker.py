@@ -4,17 +4,14 @@ from pynput import keyboard
 def openfile(file):
     with open('./txt/'+file+'.txt', 'r') as f:
         ofile = int(f.readlines()[0])
-    f.close()
     return ofile
 
 def writefile(file, wfile):
-    with open('./txt/'+file+'.txt', 'w') as g:
-        g.write(str(wfile))
-    g.close()
+    with open('./txt/'+file+'.txt', 'w') as f:
+        f.write(str(wfile))
 
-def on_press(Key):
-    
-    if Key == keyboard.Key.ctrl:
+def on_press(key):
+    if key == keyboard.Key.ctrl:
         clicks = openfile('clicks')
         builds = openfile('builds')
 
@@ -22,7 +19,7 @@ def on_press(Key):
         writefile('clicks', clicks)
         print(int(clicks))
 
-    elif Key == keyboard.Key.shift:
+    elif key == keyboard.Key.shift:
         clicks = openfile('clicks')
         builds = openfile('builds')
         price = openfile('price')
@@ -40,7 +37,7 @@ def on_press(Key):
         else:
             print("Hinta: ", price)
 
-    elif Key == keyboard.Key.esc:
+    elif key == keyboard.Key.esc:
         exit()
 
 print("Tervetuloa! Paina Ctrl clikkaaksei ja Shift ostaaksesi uusia rakennuksia.")
